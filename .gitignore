@@ -1,0 +1,39 @@
+# LaTeX temporary files
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.bcf
+*.xml
+
+# Index files
+*.ind
+*.ilg
+*.idx
+
+# PDF output - usually a bad idea to keep this in git
+*.pdf
+
+# Latexmk
+*.fdb_latexmk
+
+# SyncTeX
+*.synctex.gz
+
+# LaTeX Beamer
+*.snm
+*.vrb
+*.nav
+*.out
+
+# BibTeX
+*.bbl
+*.blg
+
+# OS files
+*.DS_Store
+
+# VIM swap files
+*.swp 
+

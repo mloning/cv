@@ -96,7 +96,7 @@
 
 \RequirePackage[style=verbose,
                 maxnames=99,
-                sorting=chronological]{biblatex}
+                sorting=chronological, backend=biber]{biblatex}
 
 \newbibmacro{string+doi}[1]{%
   \iffieldundef{doi}{#1}
@@ -105,7 +105,7 @@
   \setunit{\par}
 }
 
-\DeclareSortingScheme{chronological}{
+\DeclareSortingTemplate{chronological}{
   \sort[direction=descending]{\field{year}}
   \sort[direction=descending]{\field{month}}
 }
