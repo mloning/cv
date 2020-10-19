@@ -1,4 +1,4 @@
-\ProvidesClass{dupre-cv}
+\ProvidesClass{cv}
 \NeedsTeXFormat{LaTeX2e}
 
 \LoadClass{article}
