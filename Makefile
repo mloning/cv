@@ -11,5 +11,7 @@ build: ## Build pdf
 	sh build_tools/build.sh $(OUTPUT_DIR) $(FILE)
 
 clean: ## Clean build files
-	rm -rf $(OUTPUT_DIR)/*
+	rm -rf $(OUTPUT_DIR)
 	rm -f $(FILE).pdf
+	rm -f main.bcf
+	rm -f main.run.xml

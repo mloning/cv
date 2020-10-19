@@ -15,3 +15,4 @@ lualatex $OPTIONS --output-directory=$OUTDIR $FILE.tex
 
 # Copy generated pdf to main directory
 cp $OUTDIR/$FILE.pdf .
+cp $OUTDIR/$FILE.pdf CV_Markus_Löning.pdf
