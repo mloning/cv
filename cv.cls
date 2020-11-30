@@ -20,6 +20,8 @@
 \usepackage{tabularx}
 \usepackage{vwcol}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{datetime}
+
 \setmainfont[
    ItalicFont     = *-Italic,
    BoldFont       = *-Bold,
@@ -52,33 +54,29 @@
             anchorcolor=darkblue,citecolor=darkblue,
             }
 
-%% Number pages in CV
+%% Footer
+\newcommand{\footerstyle}[1]{
+    \footnotesize \color{lightgray} #1 
+}
+\newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
+
+
 \pagestyle{fancy}
 \fancyhf{}\renewcommand{\headrulewidth}{0pt}
-\fancyfootoffset{\marginparsep+\marginparwidth}
+% \fancyfootoffset{\marginparsep+\marginparwidth}
 \newlength{\footpageshift}
-\setlength{\footpageshift}
-          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
-\lfoot{\hspace{\footpageshift}%
-       \parbox{4in}{\, \hfill %
-                    \arabic{page} of \protect\pageref*{LastPage}
-                    \hfill \,}}
-
-%% An itemize-style list with little space between items
-\newenvironment{innerlist}[1][\enskip\textbullet]%
-        {\begin{compactitem}[#1]}{\end{compactitem}}
-
-%% An itemize-style list with lots of space between items
-\newenvironment{outerlist}[1][\enskip\textbullet]%
-        {\begin{itemize}[#1]}{\end{itemize}%
-         \vspace{-.6\baselineskip}}
+\setlength{\footpageshift}{0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{-\footpageshift} \footerstyle{\monthyeardate\today}}
+\cfoot{\hspace{-\footpageshift} \footerstyle{Markus Löning $\cdot$ CV}}
+\rfoot{\hspace{-\footpageshift} \footerstyle{page \arabic{page} of \protect\pageref*{LastPage}}}
 
 % Create command for section headers
 \renewcommand{\section}[2]%
         {\pagebreak[2]\vspace{1.25\baselineskip}%
          \phantomsection\addcontentsline{toc}{section}{#1}%
          \leavevmode\marginpar{\flushleft \
-
+         % leave empty line
+         
          \color{sectiongray} #1}#2}
 
 % Create new column types for tables
@@ -141,9 +139,10 @@
 
 \DeclareFieldFormat[article]{title}%
     {\usebibmacro{string+doi}{#1}}
-\DeclareFieldFormat[proceedings]{title}{#1\par}
-% \DeclareFieldFormat[inbook]{title}{#1\par}
-% \DeclareFieldFormat[inproceedings]{title}{#1\par}
+\DeclareFieldFormat[proceedings]{title}%
+    {\usebibmacro{string+doi}{#1}}
+\DeclareFieldFormat[misc]{title}%
+    {\usebibmacro{string+doi}{#1}}
 
 \DeclareBibliographyDriver{article}{%
 	\printfield{title}
@@ -165,6 +164,27 @@
 }
 
 \DeclareBibliographyDriver{proceedings}{%
+  \printfield{title}%
+  \newblock%
+	\vspace{2.5pt}%
+  \printnames{author}%
+  \par%
+  \newblock%
+	\vspace{.5pt}%
+  {%
+    \footnotesize\addfontfeature{Color=black}\itshape%
+    \printlist{organization}%
+    \setunit{\space}%
+    \newunit%
+    \usebibmacro{journal+issuetitle}%
+    \setunit*{\addcomma\space}%
+    \newunit%
+		.
+  }
+  \par\vspace{0.95\baselineskip}
+}
+
+\DeclareBibliographyDriver{misc}{%
   \printfield{title}%
   \newblock%
 	\vspace{2.5pt}%
