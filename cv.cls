@@ -35,9 +35,11 @@
 %% STRUCTURE
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Put section titles on left
 \reversemarginpar
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Set margins-- this has to be done after /reversemarginpar
 \usepackage[paper=letterpaper, includefoot, % Put page number below margin
            marginparwidth=30mm, % Length of section titles
@@ -45,31 +47,53 @@
            margin=1in,           % 1in margins
            includemp]{geometry}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Get rid of indenting throughout entire document
 \setlength{\parindent}{0in}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Set color of links in document
 \hypersetup{colorlinks,breaklinks,
             linkcolor=darkblue,urlcolor=darkblue,
             anchorcolor=darkblue,citecolor=darkblue,
             }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Footer
+
+% footer text style
 \newcommand{\footerstyle}[1]{
     \footnotesize \color{lightgray} #1 
 }
+
+% last updated date: <month year> format
 \newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
 
-
 \pagestyle{fancy}
-\fancyhf{}\renewcommand{\headrulewidth}{0pt}
-% \fancyfootoffset{\marginparsep+\marginparwidth}
-\newlength{\footpageshift}
-\setlength{\footpageshift}{0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
-\lfoot{\hspace{-\footpageshift} \footerstyle{\monthyeardate\today}}
-\cfoot{\hspace{-\footpageshift} \footerstyle{Markus Löning $\cdot$ CV}}
-\rfoot{\hspace{-\footpageshift} \footerstyle{page \arabic{page} of \protect\pageref*{LastPage}}}
 
+% remove header rule
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+
+% adjust footer margin
+
+
+% hspace adds some extra horizontal margin which we correct for here
+\newlength{\hspacemargin}
+\setlength{\hspacemargin}{0.1cm}
+
+\fancyfootoffset{\marginparsep-\hspacemargin}
+
+\newlength{\footshift}
+\setlength{\footshift}{0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in+\hspacemargin} % 2in is margin on both sides defined above
+
+\fancyfoot[L]{\hspace*{-\footshift}
+    \footerstyle{\monthyeardate\today}}
+\fancyfoot[C]{\hspace*{-\footshift}
+    \footerstyle{Markus Löning $\cdot$ CV}}
+\fancyfoot[R]{\hspace*{} % hspace also creates some extra vertical margin, hence if we use it for the [C] and [L] footers, we have to use it here too
+    \footerstyle{page \arabic{page} of \protect\pageref*{LastPage}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Create command for section headers
 \renewcommand{\section}[2]%
         {\pagebreak[2]\vspace{1.25\baselineskip}%
@@ -79,6 +103,7 @@
          
          \color{sectiongray} #1}#2}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Create new column types for tables
 % Uncomment this to vertically center the rows:
 % \renewcommand{\tabularxcolumn}[1]{m{#1}}
