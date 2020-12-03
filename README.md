@@ -17,5 +17,5 @@ To generate the pdf, simply run `make build` which calls the script defined in [
 * https://texblog.org/2012/04/25/writing-a-cv-in-latex/ 
 * http://www.rpi.edu/dept/arc/training/latex/resumes/ 
 * https://www.toofishes.net/blog/why-i-do-my-resume-latex/
-* https://robjhyndman.com/hyndsight/cv/,
+* https://robjhyndman.com/hyndsight/cv/
 * https://www.overleaf.com/latex/templates/software-engineer-resume/gqxmqsvsbdjf
