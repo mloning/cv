@@ -21,6 +21,7 @@
 \usepackage{vwcol}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{datetime}
+\usepackage{enumitem}
 
 \setmainfont[
    ItalicFont     = *-Italic,
@@ -41,11 +42,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Set margins-- this has to be done after /reversemarginpar
-\usepackage[paper=letterpaper, includefoot, % Put page number below margin
-           marginparwidth=30mm, % Length of section titles
-           marginparsep=2.5mm,    % Space between titles and text
-           margin=1in,           % 1in margins
-           includemp]{geometry}
+\usepackage[
+    paper=letterpaper, 
+    includefoot, % Put page number below margin
+    marginparwidth=30mm, % Length of section titles
+    marginparsep=2.5mm,    % Space between titles and text
+    margin=1in,           
+    textheight=24cm,
+    includemp
+]{geometry}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Get rid of indenting throughout entire document
@@ -91,7 +96,7 @@
 \fancyfoot[C]{\hspace*{-\footshift}
     \footerstyle{Markus Löning $\cdot$ CV}}
 \fancyfoot[R]{\hspace*{} % hspace also creates some extra vertical margin, hence if we use it for the [C] and [L] footers, we have to use it here too
-    \footerstyle{page \arabic{page} of \protect\pageref*{LastPage}}}
+    \footerstyle{\arabic{page} of \protect\pageref*{LastPage}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % Create command for section headers
