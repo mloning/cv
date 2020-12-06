@@ -77,7 +77,7 @@
 % adjust footer margin
 
 
-% hspace adds some extra horizontal margin which we correct for here
+% hspace adds for some reason some extra horizontal margin which we correct for here
 \newlength{\hspacemargin}
 \setlength{\hspacemargin}{0.1cm}
 
